@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import main.devices.Device;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class SwitchOffCommand implements Command {
+    Logger logger = LogManager.getLogger(SwitchOffCommand.class);
     private final Scanner scanner = new Scanner(System.in);
     private final List<Device> devices;
     private final List<Device> switchedOnDevices;
@@ -19,6 +22,7 @@ public class SwitchOffCommand implements Command {
     public void execute() {
         if (devices.isEmpty()) {
             System.out.println("There are no created devices, please add at least 1 device");
+            logger.warn("There are no created devices!");
             return;
         }
         boolean anyDeviceSwitchedOn = false;
@@ -30,6 +34,7 @@ public class SwitchOffCommand implements Command {
         }
         if (!anyDeviceSwitchedOn) {
             System.out.println("There are no switched on devices");
+            logger.warn("There are no switched on devices!");
             return;
         }
 
@@ -43,6 +48,8 @@ public class SwitchOffCommand implements Command {
 
         String selectedDeviceName = scanner.nextLine();
         boolean foundDevice = false;
+
+        logger.info("Switching off "+ selectedDeviceName +" device");
         for (Device device : devices) {
             if (device.getName().equalsIgnoreCase(selectedDeviceName)) {
                 foundDevice = true;

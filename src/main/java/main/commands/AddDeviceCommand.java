@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import main.devices.Device;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AddDeviceCommand implements Command{
     private final Scanner scanner = new Scanner(System.in);
     private final List<Device> devices = new ArrayList<>();
+    Logger logger = LogManager.getLogger(AddDeviceCommand.class);
 
     public List<Device> getDevices(){
         return devices;
@@ -28,6 +31,7 @@ public class AddDeviceCommand implements Command{
 
         devices.add(newDevice);
         System.out.println("Device " + newDevice.getName() + " successfully created!");
+        logger.info("Додано новий пристрій: " + newDevice.getName());
 
         System.out.println("List of devices: ");
 

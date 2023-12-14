@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+
+        <!-- Console Appender для виводу логів у консоль -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %p [%c] - %m%n"/>
+        </Console>
+
+        <!-- File Appender для запису логів у файл -->
+        <File name="File" fileName="logs/application-${date:dd_MM_yyyy_HH-mm-ss}.log" append="false">
+            <PatternLayout pattern="%d %p [%c] - %m%n"/>
+        </File>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Root Logger з рівнем логування DEBUG -->
+        <Root level="DEBUG">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>

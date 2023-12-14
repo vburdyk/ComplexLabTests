@@ -1,6 +1,8 @@
 package main.commands;
 
 import main.devices.Device;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.Scanner;
 
 public class FindByRangeCommand implements Command {
 
+    Logger logger = LogManager.getLogger(FindByRangeCommand.class);
     private final List<Device> devices;
     private final List<Device> rangeDevices = new ArrayList<>();
 
@@ -25,6 +28,7 @@ public class FindByRangeCommand implements Command {
         System.out.println("Enter the final limit: ");
         float finalPower = scanner.nextFloat();
 
+        logger.info("Showing devices from " + initPower + " watts to " + finalPower + " watts");
 
         System.out.println("Devices from " + initPower + " watts to " + finalPower + " watts");
         for (int i = 0; i < devices.size(); i++) {

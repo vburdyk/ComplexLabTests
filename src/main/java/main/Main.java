@@ -3,9 +3,12 @@ package main;
 import java.util.Scanner;
 
 import main.commands.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
     public static void main(String[] args) {
+        Logger logger = LogManager.getLogger(Main.class);
         Scanner scanner = new Scanner(System.in);
 
         AddDeviceCommand addDeviceCommand = new AddDeviceCommand();
@@ -48,10 +51,12 @@ public class Main {
                     break;
                 case 8:
                     System.out.println("Exiting the program.");
+                    logger.info("Exiting the program!");
                     scanner.close();
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice. Please enter a number from 1 to 6.");
+                    logger.warn("Invalid choice!");
                     break;
             }
         }
